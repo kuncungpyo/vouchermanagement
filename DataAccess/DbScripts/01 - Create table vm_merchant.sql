@@ -1,0 +1,14 @@
+IF (NOT EXISTS (SELECT *  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'vm_merchant'))
+BEGIN
+	CREATE TABLE [dbo].[vm_merchant] (
+		[Id]	INT IDENTITY (1, 1) NOT NULL,
+		[Name]	NVARCHAR (50) NOT NULL,	
+		PRIMARY KEY CLUSTERED ([Id] ASC),
+		UNIQUE NONCLUSTERED ([Name] ASC),
+	);
+END
+GO
+
+INSERT INTO vm_merchant VALUES('Indomaret')
+INSERT INTO vm_merchant VALUES('Alfamart')
+INSERT INTO vm_merchant VALUES('Warung Pak Ogah')

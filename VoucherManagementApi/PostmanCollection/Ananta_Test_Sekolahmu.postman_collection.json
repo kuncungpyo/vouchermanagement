@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "1845b6c7-d10d-4421-a13c-937d01ae75bf",
+		"name": "Ananta_Test_Sekolahmu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login Admin Get Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "zKo1mfkw1bpeQzkgKQVhh9QpMZX3nJwL",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "w4U8hfOAc9C3UAfeBvSu2kf8Hp5viwpqoJ-9OzWJTar1lNfSts0ZhEB_0Ccdu8n5",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin@mailinator.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Temp123#",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://ananta-sekolahmu.au.auth0.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"ananta-sekolahmu",
+						"au",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Member Get Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "zKo1mfkw1bpeQzkgKQVhh9QpMZX3nJwL",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "w4U8hfOAc9C3UAfeBvSu2kf8Hp5viwpqoJ-9OzWJTar1lNfSts0ZhEB_0Ccdu8n5",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "member@mailinator.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Temp123*",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://ananta-sekolahmu.au.auth0.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"ananta-sekolahmu",
+						"au",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product ",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxWWkRBNVliN0lGSDlBNlkzbjR3MSJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiYWRtaW4iXSwiaXNzIjoiaHR0cHM6Ly9hbmFudGEtc2Vrb2xhaG11LmF1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MjY5MzgwNTVhNGZmZDAwNjk1OGFhZDAiLCJhdWQiOiJodHRwczovL2FuYW50YS1zZWtvbGFobXUuYXUuYXV0aDAuY29tL2FwaS92Mi8iLCJpYXQiOjE2NTExNDYzNzQsImV4cCI6MTY1MTIzMjc3NCwiYXpwIjoiektvMW1ma3cxYnBlUXprZ0tRVmhoOVFwTVpYM25Kd0wiLCJzY29wZSI6InJlYWQ6Y3VycmVudF91c2VyIHVwZGF0ZTpjdXJyZW50X3VzZXJfbWV0YWRhdGEgZGVsZXRlOmN1cnJlbnRfdXNlcl9tZXRhZGF0YSBjcmVhdGU6Y3VycmVudF91c2VyX21ldGFkYXRhIGNyZWF0ZTpjdXJyZW50X3VzZXJfZGV2aWNlX2NyZWRlbnRpYWxzIGRlbGV0ZTpjdXJyZW50X3VzZXJfZGV2aWNlX2NyZWRlbnRpYWxzIHVwZGF0ZTpjdXJyZW50X3VzZXJfaWRlbnRpdGllcyIsImd0eSI6InBhc3N3b3JkIn0.hqW8FquL7-Rx-kVStl5GMYLS0DKOXuvEpSzvMToJ2ySiqFKTSRXDh1lmP4GocK0xd2hA6vUeqGI5Q8LG0XDL3JtE-w4rT-LziMHPT-iCK9h128avZiXi0ab6JDrOcSHH9u7JNr9k9Xw36I5mpGEKRGYiat-cADoGh0Op3dDmmSS60IYAQQGYOjhb3eOw4R26ctLpP3qft4B8kpHe7CguTAd9frunUh4uDLW-oKl2jPlxZN6jJQiq9-gh3A5Kc7Fe9QHbyId66AO1QiU0rB6US2DlDLDJg7I8M_HGzXCr2lI6JHma8adUQIfVEERSyjcrVJnYpD4PoSpaPhj-7unMgQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"merchantId\": 1,\r\n    \"name\": \"Sunsilk\",\r\n    \"price\" : 5000,\r\n    \"color\": \"black\",\r\n    \"stock\": 13\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Voucher With Product Rules",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxWWkRBNVliN0lGSDlBNlkzbjR3MSJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiYWRtaW4iXSwiaXNzIjoiaHR0cHM6Ly9hbmFudGEtc2Vrb2xhaG11LmF1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MjY5MzgwNTVhNGZmZDAwNjk1OGFhZDAiLCJhdWQiOiJodHRwczovL2FuYW50YS1zZWtvbGFobXUuYXUuYXV0aDAuY29tL2FwaS92Mi8iLCJpYXQiOjE2NTExNDYzNzQsImV4cCI6MTY1MTIzMjc3NCwiYXpwIjoiektvMW1ma3cxYnBlUXprZ0tRVmhoOVFwTVpYM25Kd0wiLCJzY29wZSI6InJlYWQ6Y3VycmVudF91c2VyIHVwZGF0ZTpjdXJyZW50X3VzZXJfbWV0YWRhdGEgZGVsZXRlOmN1cnJlbnRfdXNlcl9tZXRhZGF0YSBjcmVhdGU6Y3VycmVudF91c2VyX21ldGFkYXRhIGNyZWF0ZTpjdXJyZW50X3VzZXJfZGV2aWNlX2NyZWRlbnRpYWxzIGRlbGV0ZTpjdXJyZW50X3VzZXJfZGV2aWNlX2NyZWRlbnRpYWxzIHVwZGF0ZTpjdXJyZW50X3VzZXJfaWRlbnRpdGllcyIsImd0eSI6InBhc3N3b3JkIn0.hqW8FquL7-Rx-kVStl5GMYLS0DKOXuvEpSzvMToJ2ySiqFKTSRXDh1lmP4GocK0xd2hA6vUeqGI5Q8LG0XDL3JtE-w4rT-LziMHPT-iCK9h128avZiXi0ab6JDrOcSHH9u7JNr9k9Xw36I5mpGEKRGYiat-cADoGh0Op3dDmmSS60IYAQQGYOjhb3eOw4R26ctLpP3qft4B8kpHe7CguTAd9frunUh4uDLW-oKl2jPlxZN6jJQiq9-gh3A5Kc7Fe9QHbyId66AO1QiU0rB6US2DlDLDJg7I8M_HGzXCr2lI6JHma8adUQIfVEERSyjcrVJnYpD4PoSpaPhj-7unMgQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"BENGBENG10\",\r\n    \"discount\": 50,\r\n    \"discountType\": \"PRICE\",\r\n    \"expiredDate\": \"2022-05-01\",\r\n    \"productIds\" : [1]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/voucher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"voucher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Voucher With Product Rules and Max Price",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxWWkRBNVliN0lGSDlBNlkzbjR3MSJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiYWRtaW4iXSwiaXNzIjoiaHR0cHM6Ly9hbmFudGEtc2Vrb2xhaG11LmF1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MjY5MzgwNTVhNGZmZDAwNjk1OGFhZDAiLCJhdWQiOiJodHRwczovL2FuYW50YS1zZWtvbGFobXUuYXUuYXV0aDAuY29tL2FwaS92Mi8iLCJpYXQiOjE2NTExNDYzNzQsImV4cCI6MTY1MTIzMjc3NCwiYXpwIjoiektvMW1ma3cxYnBlUXprZ0tRVmhoOVFwTVpYM25Kd0wiLCJzY29wZSI6InJlYWQ6Y3VycmVudF91c2VyIHVwZGF0ZTpjdXJyZW50X3VzZXJfbWV0YWRhdGEgZGVsZXRlOmN1cnJlbnRfdXNlcl9tZXRhZGF0YSBjcmVhdGU6Y3VycmVudF91c2VyX21ldGFkYXRhIGNyZWF0ZTpjdXJyZW50X3VzZXJfZGV2aWNlX2NyZWRlbnRpYWxzIGRlbGV0ZTpjdXJyZW50X3VzZXJfZGV2aWNlX2NyZWRlbnRpYWxzIHVwZGF0ZTpjdXJyZW50X3VzZXJfaWRlbnRpdGllcyIsImd0eSI6InBhc3N3b3JkIn0.hqW8FquL7-Rx-kVStl5GMYLS0DKOXuvEpSzvMToJ2ySiqFKTSRXDh1lmP4GocK0xd2hA6vUeqGI5Q8LG0XDL3JtE-w4rT-LziMHPT-iCK9h128avZiXi0ab6JDrOcSHH9u7JNr9k9Xw36I5mpGEKRGYiat-cADoGh0Op3dDmmSS60IYAQQGYOjhb3eOw4R26ctLpP3qft4B8kpHe7CguTAd9frunUh4uDLW-oKl2jPlxZN6jJQiq9-gh3A5Kc7Fe9QHbyId66AO1QiU0rB6US2DlDLDJg7I8M_HGzXCr2lI6JHma8adUQIfVEERSyjcrVJnYpD4PoSpaPhj-7unMgQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"ALL10\",\r\n    \"discount\": 10,\r\n    \"discountType\": \"PERCENTAGE\",\r\n    \"expiredDate\": \"2022-05-01\",\r\n    \"productIds\" : [1,2,3],\r\n    \"maximumPrice\" : 10000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/voucher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"voucher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Voucher With Product Without Rules",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxWWkRBNVliN0lGSDlBNlkzbjR3MSJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiYWRtaW4iXSwiaXNzIjoiaHR0cHM6Ly9hbmFudGEtc2Vrb2xhaG11LmF1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MjY5MzgwNTVhNGZmZDAwNjk1OGFhZDAiLCJhdWQiOiJodHRwczovL2FuYW50YS1zZWtvbGFobXUuYXUuYXV0aDAuY29tL2FwaS92Mi8iLCJpYXQiOjE2NTExNDYzNzQsImV4cCI6MTY1MTIzMjc3NCwiYXpwIjoiektvMW1ma3cxYnBlUXprZ0tRVmhoOVFwTVpYM25Kd0wiLCJzY29wZSI6InJlYWQ6Y3VycmVudF91c2VyIHVwZGF0ZTpjdXJyZW50X3VzZXJfbWV0YWRhdGEgZGVsZXRlOmN1cnJlbnRfdXNlcl9tZXRhZGF0YSBjcmVhdGU6Y3VycmVudF91c2VyX21ldGFkYXRhIGNyZWF0ZTpjdXJyZW50X3VzZXJfZGV2aWNlX2NyZWRlbnRpYWxzIGRlbGV0ZTpjdXJyZW50X3VzZXJfZGV2aWNlX2NyZWRlbnRpYWxzIHVwZGF0ZTpjdXJyZW50X3VzZXJfaWRlbnRpdGllcyIsImd0eSI6InBhc3N3b3JkIn0.hqW8FquL7-Rx-kVStl5GMYLS0DKOXuvEpSzvMToJ2ySiqFKTSRXDh1lmP4GocK0xd2hA6vUeqGI5Q8LG0XDL3JtE-w4rT-LziMHPT-iCK9h128avZiXi0ab6JDrOcSHH9u7JNr9k9Xw36I5mpGEKRGYiat-cADoGh0Op3dDmmSS60IYAQQGYOjhb3eOw4R26ctLpP3qft4B8kpHe7CguTAd9frunUh4uDLW-oKl2jPlxZN6jJQiq9-gh3A5Kc7Fe9QHbyId66AO1QiU0rB6US2DlDLDJg7I8M_HGzXCr2lI6JHma8adUQIfVEERSyjcrVJnYpD4PoSpaPhj-7unMgQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"BENGBENG10\",\r\n    \"discount\": 50,\r\n    \"discountType\": \"PERCENTAGE\",\r\n    \"expiredDate\": \"2022-05-01\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/voucher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"voucher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Apply Voucher",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxWWkRBNVliN0lGSDlBNlkzbjR3MSJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiYWRtaW4iXSwiaXNzIjoiaHR0cHM6Ly9hbmFudGEtc2Vrb2xhaG11LmF1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MjY5MzgwNTVhNGZmZDAwNjk1OGFhZDAiLCJhdWQiOiJodHRwczovL2FuYW50YS1zZWtvbGFobXUuYXUuYXV0aDAuY29tL2FwaS92Mi8iLCJpYXQiOjE2NTExNDYzNzQsImV4cCI6MTY1MTIzMjc3NCwiYXpwIjoiektvMW1ma3cxYnBlUXprZ0tRVmhoOVFwTVpYM25Kd0wiLCJzY29wZSI6InJlYWQ6Y3VycmVudF91c2VyIHVwZGF0ZTpjdXJyZW50X3VzZXJfbWV0YWRhdGEgZGVsZXRlOmN1cnJlbnRfdXNlcl9tZXRhZGF0YSBjcmVhdGU6Y3VycmVudF91c2VyX21ldGFkYXRhIGNyZWF0ZTpjdXJyZW50X3VzZXJfZGV2aWNlX2NyZWRlbnRpYWxzIGRlbGV0ZTpjdXJyZW50X3VzZXJfZGV2aWNlX2NyZWRlbnRpYWxzIHVwZGF0ZTpjdXJyZW50X3VzZXJfaWRlbnRpdGllcyIsImd0eSI6InBhc3N3b3JkIn0.hqW8FquL7-Rx-kVStl5GMYLS0DKOXuvEpSzvMToJ2ySiqFKTSRXDh1lmP4GocK0xd2hA6vUeqGI5Q8LG0XDL3JtE-w4rT-LziMHPT-iCK9h128avZiXi0ab6JDrOcSHH9u7JNr9k9Xw36I5mpGEKRGYiat-cADoGh0Op3dDmmSS60IYAQQGYOjhb3eOw4R26ctLpP3qft4B8kpHe7CguTAd9frunUh4uDLW-oKl2jPlxZN6jJQiq9-gh3A5Kc7Fe9QHbyId66AO1QiU0rB6US2DlDLDJg7I8M_HGzXCr2lI6JHma8adUQIfVEERSyjcrVJnYpD4PoSpaPhj-7unMgQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"voucherCode\": \"BENGBENG10\",\r\n    \"productIds\" : [1]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/voucher/apply",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"voucher",
+						"apply"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

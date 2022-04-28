@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Configurations>Debug</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="DbScripts\01 - Create table vm_merchant.sql" />
+    <None Remove="DbScripts\02 - Create table vm_product.sql" />
+    <None Remove="DbScripts\03 - Create table vm_voucher.sql" />
+    <None Remove="DbScripts\04 - Create table vm_voucher_rule.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dbup-core" Version="4.5.0" />
+    <PackageReference Include="dbup-sqlserver" Version="4.5.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="dbup.appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="DbScripts\01 - Create table vm_merchant.sql" />
+    <EmbeddedResource Include="DbScripts\02 - Create table vm_product.sql" />
+    <EmbeddedResource Include="DbScripts\04 - Create table vm_voucher_rule.sql" />
+    <EmbeddedResource Include="DbScripts\03 - Create table vm_voucher.sql" />
+  </ItemGroup>
+
+</Project>
