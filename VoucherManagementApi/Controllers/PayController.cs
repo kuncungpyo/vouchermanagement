@@ -17,13 +17,13 @@ namespace VoucherManagementApip.Controllers
     [Route("[controller]")]
     [ApiController]
     [ApiVersion("1.0")]
-    public class VoucherController : BaseController
+    public class PayController : BaseController
     {
         private readonly IProductService productService;
         private readonly IVoucherService voucherService;
         private readonly IVoucherRulesService voucherRulesService;
 
-        public VoucherController(
+        public PayController(
             IProductService productService,
             IVoucherService voucherService,
             IVoucherRulesService voucherRulesService,
@@ -37,58 +37,10 @@ namespace VoucherManagementApip.Controllers
 
         public IConfiguration Configuration { get; }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <remarks>Pairing roster with teacher.</remarks>
-        /// <response code="201">Success created.</response>
-        /// <response code="401">Token is invalid.</response>
-        /// <response code="403">User is not authorized to access the API.</response>
-        /// <response code="500">Exception thrown.</response>
-        /// 
         [HttpPost]
-        [Route("/Voucher")]
+        [Route("/Pay")]
         [Authorize("admin")]
-        public async Task<IActionResult> CreateAsync([FromBody] CreateVoucherRequest model)
-        {
-            try
-            {
-                if (!VoucherConstants.DiscountTypes.Contains(model.DiscountType))
-                {
-                    return this.GetErrorJson("Discount type must be either PRICE or PERCENTAGE");
-                }
-
-                var response = await this.voucherService.InsertAsync(new GenericRequest<VoucherDto>
-                {
-                    Data = new VoucherDto()
-                    {
-                        Code = model.Code,
-                        Discount = model.Discount,
-                        DiscountType = model.DiscountType,
-                        ExpiredDate = model.ExpiredDate,
-                        Status = "active"
-                    }
-                });
-
-                if (response.Data == null)
-                {
-                    return this.GetErrorJson("Failed to create voucher");
-                }
-
-                await this.CreateVoucherRules(response.Data.Id, model);
-
-                return this.Created(new Uri("/Home/Index", UriKind.Relative), response.Data.Id);
-            }
-            catch (Exception ex)
-            {
-                return this.GetErrorJson(ex.Message);
-            }
-        }
-
-        [HttpPost]
-        [Route("/Voucher/Apply")]
-        [Authorize("admin,member")]
-        public async Task<IActionResult> ApplyVoucherAsync([FromBody] ApplyVoucherRequest model)
+        public async Task<IActionResult> PayAsyncs([FromBody] PayRequest model)
         {
             try
             {
@@ -98,28 +50,24 @@ namespace VoucherManagementApip.Controllers
                     return this.GetErrorJson("Please specify at least 1 product");
                 }
 
-                var readVoucherResponse = await this.voucherService.ReadByVoucherCode(model.VoucherCode);
+                var readVoucherResponse = await this.voucherService.ReadByRedeemId(model.RedeemId);
 
                 if (readVoucherResponse == null)
                 {
                     return this.GetErrorJson("Voucher not found");
                 }
 
-                if (readVoucherResponse.ExpiredDate <= DateTime.Now)
+                if ((DateTime.Now - readVoucherResponse.LastUsedDate).TotalSeconds > 60)
                 {
-                    return this.GetErrorJson("Voucher expired");
+                    return this.GetErrorJson("Voucher redemption has exceed the 1 minute time ");
                 }
 
-                if (readVoucherResponse.Status != "active")
+                if (readVoucherResponse.Status != "locked")
                 {
-                    return this.GetErrorJson("Voucher cannot be used");
+                    return this.GetErrorJson("Voucher cannot be redeemed");
                 }
 
                 var selectedProducts = await this.GetSelecteProducts(model.ProductIds);
-                if (selectedProducts.Any(p => p.Stock == 0))
-                {
-                    return this.GetErrorJson("One of the product is out of stock");
-                }
 
                 var readVoucerRulesResponse = await this.voucherRulesService.ReadByVoucherId(readVoucherResponse.Id);
 
@@ -130,46 +78,23 @@ namespace VoucherManagementApip.Controllers
                     return this.GetErrorJson(rulesValidatorMessage);
                 }
 
-
                 // Update voucher status
                 var updateVoucherRequest = readVoucherResponse;
-                updateVoucherRequest.Status = "locked";
+                updateVoucherRequest.Status = "redeemed";
                 updateVoucherRequest.LastUsedDate = DateTime.Now;
-                updateVoucherRequest.RedeemId = Guid.NewGuid().ToString();
 
                 await this.voucherService.UpdateAsync(new GenericRequest<VoucherDto> { Data = updateVoucherRequest });
 
                 // Return response              
 
-                var response = new ApplyVoucherResponse()
-                {
-                    RedeemId = updateVoucherRequest.RedeemId,
-                    TotalPrice = selectedProducts.Sum(p => p.Price),
-                    TotalDiscount = readVoucherResponse.DiscountType == VoucherConstants.DiscountTypePercentage ?
-                        selectedProducts.Sum(p => p.Price * readVoucherResponse.Discount / 100)
-                        : selectedProducts.Count * readVoucherResponse.Discount,
-                    Products = new List<DiscountedProduct>()
-                };
-
                 foreach (var p in selectedProducts)
                 {
-                    var discountPrice = readVoucherResponse.DiscountType == VoucherConstants.DiscountTypePercentage ?
-                        p.Price * readVoucherResponse.Discount / 100
-                        : readVoucherResponse.Discount;
-
-                    var discountedProduct = new DiscountedProduct
-                    {
-                        ProductName = p.Name,
-                        OriginalPrice = p.Price,
-                        PriceAfterDiscount = p.Price - discountPrice,
-                    };
-
-                    response.Products.Add(discountedProduct);
+                    // reduce the stock
+                    p.Stock--;
+                    await this.productService.UpdateAsync(new GenericRequest<ProductDto> { Data = p });
                 }
 
-                response.TotalPaid = response.TotalPrice - response.TotalDiscount;
-
-                return  Ok(response);
+                return  Ok("voucher successfuly redeemed");
             }
             catch (Exception ex)
             {

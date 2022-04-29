@@ -10,5 +10,6 @@ namespace VoucherManagementApi.Dto
         public DateTime ExpiredDate { get; set; }
         public DateTime LastUsedDate { get; set; }
         public string Status { get; set; }
+        public string RedeemId { get; set; }
     }
 }

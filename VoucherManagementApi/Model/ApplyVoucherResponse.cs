@@ -6,7 +6,7 @@ namespace VoucherManagementApi.Model
 {
     public class ApplyVoucherResponse
     {
-        public Guid RedeemId { get; set; }
+        public string RedeemId { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal TotalDiscount { get; set; }
         public decimal TotalPaid { get; set; }

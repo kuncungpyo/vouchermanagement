@@ -16,5 +16,10 @@ namespace VoucherManagementApi.Service
         {
             return await this._repository.ReadByVoucherCode(voucherCode);
         }
+
+        public async Task<VoucherDto> ReadByRedeemId(string redeemId)
+        {
+            return await this._repository.ReadByRedeemId(redeemId);
+        }
     }
 }

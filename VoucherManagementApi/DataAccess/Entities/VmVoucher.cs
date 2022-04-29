@@ -30,5 +30,8 @@ namespace VoucherManagementApi.DataAccess.Entities
         [Required]
         [StringLength(10)]
         public string Status { get; set; }
+
+        [StringLength(50)]
+        public string RedeemId { get; set; }
     }
 }

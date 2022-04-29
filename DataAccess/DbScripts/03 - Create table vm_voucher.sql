@@ -7,7 +7,8 @@ BEGIN
 		[DiscountType]							NVARCHAR (10) NOT NULL,
 		[ExpiredDate]							DATETIME2(7) NOT NULL,	
 		[Status]								NVARCHAR (10) NOT NULL,
-		[LastUsedDate]							DATETIME2(7) NOT NULL
+		[LastUsedDate]							DATETIME2(7) NOT NULL,
+		[RedeemId]							   NVARCHAR (50) NULL
 		PRIMARY KEY CLUSTERED ([Id] ASC)
 	);
 END

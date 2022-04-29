@@ -20,6 +20,22 @@ namespace VoucherManagementApi.Repository
         {
         }
 
+        public async Task<VoucherDto> ReadByRedeemId(string redeemId)
+        {
+            var dbSet = this.Context.Set<VmVoucher>();
+
+            var entity = await dbSet.FirstOrDefaultAsync(item =>
+                item.RedeemId == redeemId);
+            if (entity == null)
+            {
+                return null;
+            }
+
+            var dto = new VoucherDto();
+            this.EntityToDto(entity, dto);
+            return dto;
+        }
+
         public async Task<VoucherDto> ReadByVoucherCode(string voucherCode)
         {
             var dbSet = this.Context.Set<VmVoucher>();
